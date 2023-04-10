@@ -19,13 +19,13 @@ app.use('/', bodyParser.urlencoded({ extended: false }));
 
 app.post('/api/fileanalyse', upload.single("upfile"), function(req, res) {
   console.log(req.body);
-  console.log(req.files);
-  let filePropertiesObj = {
-    name: 'filename',
-    type: 'filetype',
-    size: 'filesize'
-  }
-  res.json(filePropertiesObj);
+  console.log(req.file);
+  // let filePropertiesObj = {
+  //   name: req.files.originalname,
+  //   type: req.files.mimetype,
+  //   size: req.files.size
+  // }
+  res.json(req.files);
 });
 
 
