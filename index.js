@@ -1,6 +1,9 @@
 var express = require('express');
 var cors = require('cors');
-require('dotenv').config()
+require('dotenv').config();
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+let bodyParser = require('body-parser');
 
 var app = express();
 
@@ -11,7 +14,12 @@ app.get('/', function (req, res) {
   res.sendFile(process.cwd() + '/views/index.html');
 });
 
-app.post('/api/fileanalyse', function(req, res) {
+// enable bodyParser
+app.use('/', bodyParser.urlencoded({ extended: false }));
+
+app.post('/api/fileanalyse', upload.single(), function(req, res) {
+  console.log(req.body);
+  console.log(req.files);
   let filePropertiesObj = {
     name: 'filename',
     type: 'filetype',
