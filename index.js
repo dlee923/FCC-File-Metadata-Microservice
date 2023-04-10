@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 // enable bodyParser
 app.use('/', bodyParser.urlencoded({ extended: false }));
 
-app.post('/api/fileanalyse', upload.single(), function(req, res) {
+app.post('/api/fileanalyse', upload.single("upfile"), function(req, res) {
   console.log(req.body);
   console.log(req.files);
   let filePropertiesObj = {
